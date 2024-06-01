@@ -1,0 +1,84 @@
+[
+    {
+        "order_id": "123456",
+        "customer": {
+            "customer_id": "78910",
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "phone": "+1234567890",
+            "address": {
+                "street": "123 Elm St",
+                "city": "Springfield",
+                "state": "IL",
+                "zip_code": "62704",
+                "country": "USA"
+            }
+        },
+        "order_date": "2024-06-01T14:30:00Z",
+        "items": [
+            {
+                "item_id": "987",
+                "product_name": "Wireless Mouse",
+                "quantity": 2,
+                "price": 25.99
+            },
+            {
+                "item_id": "654",
+                "product_name": "Mechanical Keyboard",
+                "quantity": 1,
+                "price": 89.99
+            }
+        ],
+        "payment": {
+            "payment_method": "Credit Card",
+            "payment_status": "Paid",
+            "transaction_id": "abc123"
+        },
+        "shipment": {
+            "shipment_id": "56789",
+            "carrier": "UPS",
+            "tracking_number": "1Z999AA10123456789",
+            "shipment_date": "2024-06-02T10:00:00Z",
+            "delivery_date": "2024-06-05T15:30:00Z"
+        },
+        "order_status": "Shipped"
+    },
+    {
+        "order_id": "123457",
+        "customer": {
+            "customer_id": "78911",
+            "name": "Jane Smith",
+            "email": "jane@gmail.com",
+            "phone": "+1234567891",
+            "address": {
+                "street": "456 Oak St",
+                "city": "Metropolis",
+                "state": "NY",
+                "zip_code": "10001",
+                "country": "USA"
+            }
+        },
+        "order_date": "2024-05-20T10:00:00Z",
+        "items": [
+            {
+                "item_id": "321",
+                "product_name": "Laptop Stand",
+                "quantity": 1,
+                "price": 29.99
+            }
+        ],
+        "payment": {
+            "payment_method": "PayPal",
+            "payment_status": "Paid",
+            "transaction_id": "def456"
+        },
+        "shipment": {
+            "shipment_id": "56790",
+            "carrier": "FedEx",
+            "tracking_number": "1Z999BB10123456789",
+            "shipment_date": "2024-05-21T08:00:00Z",
+            "delivery_date": "2024-05-24T12:00:00Z"
+        },
+        "order_status": "Delivered"
+    }
+]
