@@ -10,40 +10,23 @@ function loadDashboard() {
     // Display welcome message
     $("#welcome-message").text(`Hi! ${user.name}`);
 
-    // Fetch domain order data
-    $.getJSON("order.json", function(data) {
-        var domainOrders = data.domain_info;
-        var $domainOrders = $("#domain-orders");
-        if (domainOrders.length > 0) {
-            domainOrders.forEach(domain => {
-                var orderCard = `
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">${domain.domain_name}</h5>
-                            <p class="card-text">Registrar: ${domain.registrar}</p>
-                            <p class="card-text">Expiry Date: ${domain.expiry_date}</p>
-                            <p class="card-text">Domain Status: ${getStatusLabel(domain.expiry_date)}</p>
-                            <a href="domain.html" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                `;
-                $domainOrders.append(orderCard);
+    // Fetch order data
+    $.getJSON("orders.json", function(orders) {
+        var userOrders = orders.filter(order => order.customer.customer_id === user.user_id);
+        var $orderHistory = $("#order-history");
+        if (userOrders.length > 0) {
+            userOrders.forEach(order => {
+                var orderItems = order.items.map(item => `${item.product_name} (x${item.quantity})`).join(", ");
+                $orderHistory.append(`<li class="list-group-item">
+                    Order ID: ${order.order_id}<br>
+                    Items: ${orderItems}<br>
+                    Total: $${order.items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}
+                </li>`);
             });
         } else {
-            $domainOrders.append('<p>No domain orders found</p>');
+            $orderHistory.append('<li class="list-group-item">No orders found</li>');
         }
     });
-}
-
-// Function to get status label based on expiry date
-function getStatusLabel(expiryDate) {
-    var expiryTimestamp = new Date(expiryDate).getTime();
-    var currentTimestamp = Date.now();
-    if (expiryTimestamp > currentTimestamp) {
-        return '<span class="badge badge-success">Active</span>';
-    } else {
-        return '<span class="badge badge-danger">Expired</span>';
-    }
 }
 
 // Check if user is logged in
